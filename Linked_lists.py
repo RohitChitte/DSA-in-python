@@ -115,6 +115,28 @@ class LinkedList:
                 break
             itr = itr.next
 
+    def sorted_insert(self, data1):
+        if self.head == None:
+            self.insert_at_begining(data1)
+        elif self.head.data >= data1:
+            self.head = Node(data1, self.head)
+        else:
+            new_node = Node(data1, None)
+            current = self.head
+            while (current.next is not None and
+                   current.next.data < new_node.data):
+                current = current.next
+
+            new_node.next = current.next
+            current.next = new_node
+
+    def search(self, key):
+        itr = self.head
+        while itr:
+            if (itr.data == key):
+                return itr
+            itr = itr.next
+
     
 
 
@@ -129,3 +151,8 @@ if __name__ == '__main__':
     ll.printL()
     ll.insert_after_value("grapes","mango")
     """
+    l1 = LinkedList()
+    l1.insert_values([1,2,3,4,5,6])
+    l1.sorted_insert(3.5)
+    l1.printL()
+    print(l1.search(4).data)

@@ -12,7 +12,11 @@ class stack:
     def pop(self):
         return self.container.pop()
 
-    def peek(self):
+    def peek(self,position):
+        if position<=self.size():
+            return self.container[-position]
+
+    def stackTop(self):
         return self.container[-1]
 
     def size(self):
@@ -21,18 +25,26 @@ class stack:
     def isempty(self):
         return len(self.container)==0
 
-"""
+    def display(self):
+        for i in range(self.size()-1,-1,-1):
+            print(self.container[i])
+
+
+
 s = stack()
 s.push(3)
-print(s.peek())
 s.push(4)
-print(s.size())
-s.pop()
-print(s.size())
-print(s.peek())
-print(s.container)
-print(s.isempty())
-"""
+s.push(5)
+s.push(8)
+print("Peek Operation ",s.peek(1))
+print("Printing the Stack")
+s.display()
+print("\nPop Operation",s.pop())
+print("Size",s.size())
+print("object",s.container)
+print("Empty status",s.isempty())
+print("stack top",s.stackTop())
+
 
 def reversestring(value):
     s = stack()
@@ -43,4 +55,4 @@ def reversestring(value):
         string += s.pop()
     return string 
 
-print(reversestring("We will conquere COVID-19"))
+#print(reversestring("We will conquere COVID-19"))
